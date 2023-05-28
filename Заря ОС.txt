@@ -2,6 +2,7 @@ C:\OS\reactos-master\base\shell\explorer\ меню пуска, рабочий с
 
 C:\OS\reactos-master\base\system\userinit\res
 C:\OS\reactos-master\base\setup\reactos - Установщик ОС(настройщиик)
+C:\OS\Zarya\win32ss\gdi\ntgdi\stockobj.c здесь системные цвета
 
 C:\OS\reactos\base\shell\explorer - рабочий стол
 traywnd.cpp основной класс
