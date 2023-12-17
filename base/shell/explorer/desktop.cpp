@@ -199,7 +199,8 @@ DesktopCreateWindow(IN OUT ITrayWindow *Tray)
     return pDesktopThread;
 }
 
-VOID DesktopDestroyShellWindow(IN HANDLE hDesktop)
+VOID
+DesktopDestroyShellWindow(IN HANDLE hDesktop)
 {
     CDesktopThread* pDesktopThread = reinterpret_cast<CDesktopThread*>(hDesktop);
     delete pDesktopThread;

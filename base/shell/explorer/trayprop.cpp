@@ -224,9 +224,6 @@ public:
     }
 };
 
-<<<<<<< HEAD
-static int CALLBACK PropSheetProc(HWND hwndDlg, UINT uMsg, LPARAM lParam)
-=======
 class CNotifySettingsPage : public CPropertyPageImpl<CNotifySettingsPage>
 {
 private:
@@ -328,7 +325,6 @@ public:
 
 static int CALLBACK
 PropSheetProc(HWND hwndDlg, UINT uMsg, LPARAM lParam)
->>>>>>> 474a8ea46bec44a9155194ef2bf92548a9bfca07
 {
     // NOTE: This callback is needed to set large icon correctly.
     HICON hIcon;
@@ -344,7 +340,8 @@ PropSheetProc(HWND hwndDlg, UINT uMsg, LPARAM lParam)
     return 0;
 }
 
-VOID DisplayTrayProperties(IN HWND hwndOwner, IN HWND hwndTaskbar)
+VOID
+DisplayTrayProperties(IN HWND hwndOwner, IN HWND hwndTaskbar)
 {
     PROPSHEETHEADER psh;
     CSimpleArray<HPROPSHEETPAGE> hpsp;

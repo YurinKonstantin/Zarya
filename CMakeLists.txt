@@ -227,19 +227,14 @@ Enable this if the module uses typeid or dynamic_cast. You will probably need to
     endif()
 
     # Version Options
-    add_definitions(-DWINVER=0x502
-                    -D_WIN32_IE=0x601
+      add_definitions(-DWINVER=0x502
+                    -D_WIN32_IE=0x600
                     -D_WIN32_WINNT=0x502
-<<<<<<< HEAD
-                    -D_WIN32_WINDOWS=0x601
-                    -D_SETUPAPI_VER=0x601
-                    -DMINGW_HAS_SECURE_API=1)
-=======
                     -D_WIN32_WINDOWS=0x502
                     -D_SETUPAPI_VER=0x502
                     -DMINGW_HAS_SECURE_API=1
                     -DDLL_EXPORT_VERSION=${DLL_EXPORT_VERSION})
->>>>>>> 474a8ea46bec44a9155194ef2bf92548a9bfca07
+
 
     # Arch Options
     if(ARCH STREQUAL "i386")
