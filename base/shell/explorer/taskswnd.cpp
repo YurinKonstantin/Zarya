@@ -492,10 +492,12 @@ public:
     HICON GetWndIcon(HWND hwnd)
     {
         HICON hIcon = NULL;
+
+        /* Retrieve icon by sending a message */
 #define GET_ICON(type) \
     SendMessageTimeout(hwnd, WM_GETICON, (type), 0, SMTO_NOTIMEOUTIFNOTHUNG, 100, (PDWORD_PTR)&hIcon)
 
-        LRESULT bAlive = GET_ICON(ICON_SMALL2);
+        LRESULT bAlive = GET_ICON(g_TaskbarSettings.bSmallIcons ? ICON_SMALL2 : ICON_BIG);
         if (hIcon)
             return hIcon;
 
@@ -508,17 +510,18 @@ public:
 
         if (bAlive)
         {
-            GET_ICON(ICON_BIG);
+            GET_ICON(g_TaskbarSettings.bSmallIcons ? ICON_BIG : ICON_SMALL2);
             if (hIcon)
                 return hIcon;
         }
 #undef GET_ICON
 
-        hIcon = (HICON)GetClassLongPtr(hwnd, GCLP_HICONSM);
+        /* If we failed, retrieve icon from the window class */
+        hIcon = (HICON)GetClassLongPtr(hwnd, g_TaskbarSettings.bSmallIcons ? GCLP_HICONSM : GCLP_HICON);
         if (hIcon)
             return hIcon;
 
-        return (HICON)GetClassLongPtr(hwnd, GCLP_HICON);
+        return (HICON)GetClassLongPtr(hwnd, g_TaskbarSettings.bSmallIcons ? GCLP_HICON : GCLP_HICONSM);
     }
 
     INT UpdateTaskItemButton(IN PTASK_ITEM TaskItem)
@@ -1262,9 +1265,12 @@ public:
         /* Update the size of the image list if needed */
         int cx, cy;
         ImageList_GetIconSize(m_ImageList, &cx, &cy);
-        if (cx != GetSystemMetrics(SM_CXSMICON) || cy != GetSystemMetrics(SM_CYSMICON))
+        if (cx != GetSystemMetrics(g_TaskbarSettings.bSmallIcons ? SM_CXSMICON : SM_CXICON) ||
+            cy != GetSystemMetrics(g_TaskbarSettings.bSmallIcons ? SM_CYSMICON : SM_CYICON))
         {
-            ImageList_SetIconSize(m_ImageList, GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON));
+            ImageList_SetIconSize(m_ImageList,
+                                  GetSystemMetrics(g_TaskbarSettings.bSmallIcons ? SM_CXSMICON : SM_CXICON),
+                                  GetSystemMetrics(g_TaskbarSettings.bSmallIcons ? SM_CYSMICON : SM_CYICON));
 
             /* SetIconSize removes all icons so we have to reinsert them */
             PTASK_ITEM TaskItem = m_TaskItems;
@@ -1452,7 +1458,9 @@ public:
        // InvalidateRect(m_TaskBar.m_hWnd, NULL, TRUE);
 
 
-        m_ImageList = ImageList_Create(GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), ILC_COLOR32 | ILC_MASK, 0, 1000);
+        m_ImageList = ImageList_Create(GetSystemMetrics(g_TaskbarSettings.bSmallIcons ? SM_CXSMICON : SM_CXICON),
+                                       GetSystemMetrics(g_TaskbarSettings.bSmallIcons ? SM_CYSMICON : SM_CYICON),
+                                       ILC_COLOR32 | ILC_MASK, 0, 1000);
         m_TaskBar.SetImageList(m_ImageList);
 
         /* Set proper spacing between buttons */
@@ -1617,6 +1625,10 @@ public:
             else
             {
                 ::SwitchToThisWindow(TaskItem->hWnd, TRUE);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 474a8ea46bec44a9155194ef2bf92548a9bfca07
                 TRACE("Valid button clicked. App window Restored.\n");
             }
         }
@@ -1854,13 +1866,25 @@ public:
 
     LRESULT OnTaskbarSettingsChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
     {
+        BOOL bSettingsChanged = FALSE;
         TaskbarSettings* newSettings = (TaskbarSettings*)lParam;
+
         if (newSettings->bGroupButtons != g_TaskbarSettings.bGroupButtons)
         {
+            bSettingsChanged = TRUE;
             g_TaskbarSettings.bGroupButtons = newSettings->bGroupButtons;
             m_IsGroupingEnabled = g_TaskbarSettings.bGroupButtons;
+        }
 
-            /* Collapse or expand groups if necessary */
+        if (newSettings->bSmallIcons != g_TaskbarSettings.bSmallIcons)
+        {
+            bSettingsChanged = TRUE;
+            g_TaskbarSettings.bSmallIcons = newSettings->bSmallIcons;
+        }
+
+        if (bSettingsChanged)
+        {
+            /* Refresh each task item view */
             RefreshWindowList();
             UpdateButtonsSize(FALSE);
         }

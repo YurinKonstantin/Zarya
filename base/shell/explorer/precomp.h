@@ -17,6 +17,7 @@
 #define COM_NO_WINDOWS_H
 
 #define COBJMACROS
+#define OEMRESOURCE
 
 #include <windef.h>
 #include <winbase.h>
@@ -205,7 +206,11 @@ struct TaskbarSettings
     BOOL bLock;
     BOOL bGroupButtons;
     BOOL bShowSeconds;
+    BOOL bPreferDate;
     BOOL bHideInactiveIcons;
+    BOOL bSmallIcons;
+    BOOL bCompactTrayIcons;
+    BOOL bShowDesktopButton;
     TW_STRUCKRECTS2 sr;
 
     BOOL Load();

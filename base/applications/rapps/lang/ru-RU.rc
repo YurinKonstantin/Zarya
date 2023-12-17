@@ -1,3 +1,15 @@
+/*
+ * PROJECT:     ReactOS Applications Manager
+ * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
+ * PURPOSE:     Russian resource file
+ * TRANSLATORS: Copyright 2009 Dmitry Chapyshev <dmitry@reactos.org>
+ *              Copyright 2015-2016 Kudratov Olimjon <olim98@bk.ru>
+ *              Copyright 2016 Sergey Stopkin <stopkin.sergey@gmail.com>
+ *              Copyright 2016 Nikolay Burshtyn <amber8706@mail.ru>
+ *              Copyright 2017 Alexander Shaposhnikov <sanchaez@reactos.org>
+ *              Copyright 2019-2023 Stanislav Motylkov <binarymaster@mail.ru>
+ */
+
 LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 
 IDR_MAINMENU MENU
@@ -109,6 +121,7 @@ BEGIN
     IDS_TOOLTIP_INSTALL "Установить"
     IDS_TOOLTIP_UNINSTALL "Удалить"
     IDS_TOOLTIP_MODIFY "Изменить"
+    IDS_TOOLTIP_SELECT_ALL "Выбрать/Снять все"
     IDS_TOOLTIP_SETTINGS "Параметры"
     IDS_TOOLTIP_REFRESH "Обновить"
     IDS_TOOLTIP_UPDATE_DB "Обновить базу данных"
@@ -181,13 +194,10 @@ BEGIN
     IDS_APPTITLE "Менеджер приложений ReactOS"
     IDS_APP_AUTHORS "Copyright 2009 Dmitry Chapyshev"
     IDS_SEARCH_TEXT "Поиск…"
-    IDS_INSTALL "Установить"
-    IDS_UNINSTALL "Удалить"
-    IDS_MODIFY "Изменить"
     IDS_APPS_COUNT "Количество приложений: %d; Выбрано: %d"
     IDS_WELCOME_TITLE "Добро пожаловать в ""Менеджер приложений ReactOS""!\n\n"
     IDS_WELCOME_TEXT "Выберите категорию слева и приложение для установки или удаления.\nСайт ReactOS: "
-    IDS_WELCOME_URL "https://reactos.org/"
+    IDS_WELCOME_URL "https://reactos.org"
     IDS_INSTALLED "Установленные"
     IDS_AVAILABLEFORINST "Доступно для установки"
     IDS_UPDATES "Обновления"
@@ -206,7 +216,6 @@ BEGIN
     IDS_INTEG_CHECK_FAIL "Приложение не прошло проверку целостности, возможно оно было повреждено или подменено. Запуск приложения не рекомендуется."
     IDS_INTERRUPTED_DOWNLOAD "Загрузка была прервана. Проверьте подключение к сети Интернет."
     IDS_UNABLE_TO_WRITE "Не удалось записать данные на диск. Возможно, недостаточно свободного места на диске."
-    IDS_SELECT_ALL "Выбрать все"
     IDS_INSTALL_SELECTED "Установить выбранное"
     IDS_SELECTEDFORINST "Выбрано для установки"
     IDS_MISMATCH_CERT_INFO "Используемый сертификат не опознан:\nНазначение: %s\nВыдан: %s\nВы хотите продолжить в любом случае?"
@@ -242,7 +251,7 @@ BEGIN
     IDS_LANGUAGE_NO_TRANSLATION "Доступно на других языках"
     IDS_LANGUAGE_ENGLISH_TRANSLATION "Доступно на Английском"
     IDS_LANGUAGE_SINGLE "Один язык"
-    IDS_LANGUAGE_MORE_PLACEHOLDER " (+ещё %d )"
+    IDS_LANGUAGE_MORE_PLACEHOLDER " (+ещё %d)"
     IDS_LANGUAGE_AVAILABLE_PLACEHOLDER " (+%d доступно)"
 END
 

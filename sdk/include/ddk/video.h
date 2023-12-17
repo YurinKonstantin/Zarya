@@ -904,14 +904,15 @@ VPAPI
 VP_STATUS
 NTAPI
 VideoPortGetAccessRanges(
-  IN PVOID HwDeviceExtension,
-  IN ULONG NumRequestedResources,
-  IN PIO_RESOURCE_DESCRIPTOR RequestedResources OPTIONAL,
-  IN ULONG NumAccessRanges,
-  OUT PVIDEO_ACCESS_RANGE AccessRanges,
-  IN PVOID VendorId,
-  IN PVOID DeviceId,
-  OUT PULONG Slot);
+    _In_ PVOID HwDeviceExtension,
+    _In_opt_ ULONG NumRequestedResources,
+    _In_reads_opt_(NumRequestedResources)
+        PIO_RESOURCE_DESCRIPTOR RequestedResources,
+    _In_ ULONG NumAccessRanges,
+    _Out_writes_(NumAccessRanges) PVIDEO_ACCESS_RANGE AccessRanges,
+    _In_ PVOID VendorId,
+    _In_ PVOID DeviceId,
+    _Out_ PULONG Slot);
 
 VPAPI
 PVOID
@@ -1251,9 +1252,9 @@ VPAPI
 VP_STATUS
 NTAPI
 VideoPortVerifyAccessRanges(
-  IN PVOID HwDeviceExtension,
-  IN ULONG NumAccessRanges,
-  IN PVIDEO_ACCESS_RANGE AccessRanges);
+    _In_ PVOID HwDeviceExtension,
+    _In_opt_ ULONG NumAccessRanges,
+    _In_reads_opt_(NumAccessRanges) PVIDEO_ACCESS_RANGE AccessRanges);
 
 VPAPI
 VOID

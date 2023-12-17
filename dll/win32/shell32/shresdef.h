@@ -140,6 +140,7 @@
 #define FCIDM_SHVIEW_NEW          146
 #define IDS_CONTROLPANEL          148
 #define IDS_NEWFOLDER             149
+#define IDS_NEWITEMFORMAT         150
 #define IDS_COLUMN_EXTENSION      151
 #define IDS_NO_EXTENSION          152
 #define IDS_RECYCLEBIN_LOCATION   153
@@ -254,6 +255,11 @@
 #define IDS_COPYERRORSUBFOLDER   350
 #define IDS_MOVEERROR            351
 #define IDS_COPYERROR            352
+
+/* Shortcut property sheet */
+#define IDS_SHORTCUT_RUN_NORMAL  4167
+#define IDS_SHORTCUT_RUN_MIN     4168
+#define IDS_SHORTCUT_RUN_MAX     4169
 
 #define IDS_MENU_EMPTY           34561
 

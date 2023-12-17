@@ -1,14 +1,14 @@
 /*
- * PROJECT:    PAINT for ReactOS
- * LICENSE:    LGPL
- * FILE:       base/applications/mspaint/lang/pt-PT.rc
- * PURPOSE:    Portuguese Language resource file
- * TRANSLATOR: Manuel D V Silva
+ * PROJECT:     PAINT for ReactOS
+ * LICENSE:     LGPL-2.0-or-later (https://spdx.org/licenses/LGPL-2.0-or-later)
+ * PURPOSE:     Portuguese (Portugal) resource file
+ * TRANSLATORS: Copyright 2009 Manuel D V Silva (mds) <manueldulcidio@gmail.com>
+ *              Copyright 2023 Jose Carlos Jesus <zecarlos1957@hotmail.com>
  */
 
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
 
-//IDB_FONTSTOOLBAR BITMAP "icons/fontstoolbar-pt-PT.bmp"
+//IDB_FONTSTOOLBAR BITMAP "img/fontstoolbar-pt-PT.bmp"
 
 ID_MENU MENU
 BEGIN
@@ -100,6 +100,25 @@ BEGIN
     END
 END
 
+ID_POPUPMENU MENU
+BEGIN
+    POPUP "Popup #0"
+    BEGIN
+        MENUITEM "Cor&tar\tCtrl+X", IDM_EDITCUT
+        MENUITEM "&Copiar\tCtrl+C", IDM_EDITCOPY
+        MENUITEM "Co&lar\tCtrl+V", IDM_EDITPASTE
+        MENUITEM "Limpar &selecção\tDel", IDM_EDITDELETESELECTION
+        MENUITEM "Seleccionar &tudo\tCtrl+A", IDM_EDITSELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "C&opiar para...", IDM_EDITCOPYTO
+        MENUITEM "Colar &de...", IDM_EDITPASTEFROM
+        MENUITEM SEPARATOR
+        MENUITEM "I&nverter/rodar...\tCtrl+R", IDM_IMAGEROTATEMIRROR
+        MENUITEM "&Redimensionar/Torcer...\tCtrl+W", IDM_IMAGESTRETCHSKEW
+        MENUITEM "&Inverter cores\tCtrl+I", IDM_IMAGEINVERTCOLORS
+    END
+END
+
 ID_ACCELERATORS ACCELERATORS
 BEGIN
     "^O", IDM_FILENEW
@@ -121,6 +140,10 @@ BEGIN
     "^I", IDM_IMAGEINVERTCOLORS
     "^E", IDM_IMAGEATTRIBUTES
     "N", IDM_IMAGEDELETEIMAGE, CONTROL, SHIFT, VIRTKEY
+    VK_ADD, IDM_CTRL_PLUS, CONTROL, VIRTKEY
+    VK_SUBTRACT, IDM_CTRL_MINUS, CONTROL, VIRTKEY
+    VK_OEM_PLUS, IDM_CTRL_PLUS, CONTROL, VIRTKEY
+    VK_OEM_MINUS, IDM_CTRL_MINUS, CONTROL, VIRTKEY
 END
 
 IDD_MIRRORROTATE DIALOGEX 100, 100, 180, 100
@@ -144,23 +167,23 @@ STYLE DS_SHELLFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 FONT 8, "MS Shell Dlg"
 CAPTION "Atributos"
 BEGIN
-    LTEXT "&Largura:", IDD_ATTRIBUTESTEXT1, 10, 40, 35, 10
+    LTEXT "&Largura:", IDD_ATTRIBUTESTEXT1, 10, 42, 35, 10
     EDITTEXT IDD_ATTRIBUTESEDIT1, 48, 40, 35, 12
-    LTEXT "Altura:", IDD_ATTRIBUTESTEXT2, 90, 40, 35, 10
+    LTEXT "&Altura:", IDD_ATTRIBUTESTEXT2, 90, 42, 35, 10
     EDITTEXT IDD_ATTRIBUTESEDIT2, 128, 40, 35, 12
     LTEXT "Data do ficheiro:", IDD_ATTRIBUTESTEXT3, 10, 5, 60, 10
     LTEXT "Tamanho no disco:", IDD_ATTRIBUTESTEXT4, 10, 15, 60, 10
     LTEXT "Resolução:", IDD_ATTRIBUTESTEXT5, 10, 25, 60, 10
-    LTEXT "não disponível", IDD_ATTRIBUTESTEXT6, 60, 5, 90, 10
-    LTEXT "não disponível", IDD_ATTRIBUTESTEXT7, 60, 15, 90, 10
-    LTEXT "ppcm", IDD_ATTRIBUTESTEXT8, 60, 25, 90, 10 /* This unit must match IDS_PRINTRES */
+    LTEXT "não disponível", IDD_ATTRIBUTESTEXT6, 80, 5, 90, 10
+    LTEXT "não disponível", IDD_ATTRIBUTESTEXT7, 80, 15, 90, 10
+    LTEXT "ppcm", IDD_ATTRIBUTESTEXT8, 80, 25, 90, 10 /* This unit must match IDS_PRINTRES */
     GROUPBOX "Unidades", IDD_ATTRIBUTESGROUP1, 6, 57, 158, 27
     AUTORADIOBUTTON "P&olegadas", IDD_ATTRIBUTESRB1, 12, 69, 45, 10, WS_GROUP
     AUTORADIOBUTTON "c&m", IDD_ATTRIBUTESRB2, 62, 69, 45, 10
     AUTORADIOBUTTON "Pi&xels", IDD_ATTRIBUTESRB3, 112, 69, 45, 10
     GROUPBOX "Cores", IDD_ATTRIBUTESGROUP2, 6, 88, 158, 27
     AUTORADIOBUTTON "Preto e &branco", IDD_ATTRIBUTESRB4, 12, 100, 70, 10, WS_GROUP
-    AUTORADIOBUTTON "Co&res", IDD_ATTRIBUTESRB5, 92, 100, 35, 10
+    AUTORADIOBUTTON "Co&res", IDD_ATTRIBUTESRB5, 92, 100, 42, 10
     DEFPUSHBUTTON "OK", IDOK, 170, 8, 48, 14
     PUSHBUTTON "Cancelar", IDCANCEL, 170, 24, 48, 14
     PUSHBUTTON "&Predefinição", IDD_ATTRIBUTESSTANDARD, 170, 40, 48, 14
@@ -242,4 +265,8 @@ BEGIN
     IDS_UNDERLINE "Sublinhado"
     IDS_VERTICAL "Vertical"
     IDS_PRINTRES "%d x %d pixel/cm"
+    IDS_CANTPASTE "Failed to paste from the clipboard. The data format is either incorrect or not supported."
+    IDS_SAVEERROR "Failed to save the bitmap to file:\n\n%s"
+    IDS_CANTSENDMAIL "Failed to send a mail."
+    IDS_LOSECOLOR "The color information will be lost in this operation. Are you sure to proceed?"
 END
